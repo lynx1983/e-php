@@ -1,0 +1,14 @@
+# Include this file to the virtual host configuration section:
+#
+# Include /home/<your_name>/svn/e-php/trunk/htaccess
+
+RewriteEngine on
+#RewriteLogLevel 9
+#RewriteLog "/var/log/apache2/rewrite.log"
+#Temporary redirect to the terminal until it is changed their configuration
+
+RewriteCond %{REQUEST_URI} !^/simplesaml/
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !=/favicon.ico
+RewriteRule ^(.*)$ /index.php?__q=$1 [L,QSA]
